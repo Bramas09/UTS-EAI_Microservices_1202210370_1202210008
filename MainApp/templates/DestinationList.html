@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Booking Destination App</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+            gap: 20px;
+            padding: 20px; /* Add padding to container */
+        }
+        /* Style the card as a clickable link */
+        .card-link {
+            text-decoration: none;
+            color: inherit; /* Inherit the text color */
+            cursor: pointer; /* Show pointer cursor on hover */
+        }
+        /* Custom styles for card background */
+        .card {
+            background-color: lightgray; /* Set the background color */
+            border: black; /* Remove border */
+            max-width: 18rem; /* Set the maximum width for the card */
+            margin: auto; /* Center the card horizontally */
+            margin-bottom: 20px; /* Add bottom margin */
+        }
+        /* Custom styles for font */
+        .card-title,
+        .card-text {
+            font-family: 'Times New Roman', Times, serif; /* Set font to Times New Roman */
+        }
+        /* Positioning for the booking button */
+        .booking-btn,
+        .back-btn {
+            position: fixed;
+            bottom: 80px; /* Add bottom margin */
+            padding: 10px 20px; /* Padding tombol */
+            font-size: 1rem; /* Ukuran font tombol */
+            z-index: 1; /* Ensure buttons appear above other content */
+        }
+        /* Style for the back button */
+        .back-btn {
+            left: 150px; /* Set the left margin */
+        }
+        /* Style for the booking button */
+        .booking-btn {
+            right: 150px; /* Set the right margin */
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <h1 class="mb-4 text-center">Destinations</h1>
+    <div class="container">
+        {% for value in detail %}
+        <!-- Use anchor element for card with destination link -->
+        <a href="/destination/{{ value['DestinationID'] }}" class="card-link">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><b>{{ value['DestinationName'] }}</b></h5>
+                    <h6 class="card-text"><b>{{ value['Location'] }}</b></h6>
+                    <h7 class="card-text">{{ value['Rating'] }} &nbsp; {{ value['Viewers'] }}</h7> <br>
+                    <h7 class="card-text">Rp {{ value['Price'] }}</h7>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <a type="button" class="btn btn-primary booking-btn" href="/booking">Booking</a>
+    <a type="button" class="btn btn-warning back-btn" href="/">Back</a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
