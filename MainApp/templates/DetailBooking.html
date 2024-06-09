@@ -1,15 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <title>Booking Destination App</title>
-</head>
-<body>
-  <br>
-  <br>
-  <h1 class="mb-4 text-center">Booking Data</h1>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Detail Booking</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-outline-secondary me-2"
+                aria-current="page"
+                href="/show-booking"
+                >Booking</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-outline-secondary me-2"
+                aria-current="page"
+                href="/show-destination"
+                >Destination</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex ms-auto">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <br />
+    <h1 class="mb-4 text-center">Booking Data</h1>
   <div class="container mt-5">
     <div class="card mx-auto" style="width: 60vw;">
       <div class="table-responsive">
@@ -19,7 +60,7 @@
               <tr>
                 <th scope="row">Booking ID</th>
                 <td>:</td>
-                <td>{{ result['BookingID'] }}</td>
+                <td>{{ detail['BookingID'] }}</td>
               </tr>
               <tr>
                 <th scope="row" colspan="3" class="text-center"></th>
@@ -30,27 +71,27 @@
               <tr>
                 <th scope="row">Customer ID</th>
                 <td>:</td>
-                <td>{{ result['CustomerID'] }}</td>
+                <td>{{ detail['CustomerID'] }}</td>
               </tr>
               <tr>
                 <th scope="row">Name</th>
                 <td>:</td>
-                <td>{{ result['CustomerName'] }}</td>
+                <td>{{ detail['CustomerName'] }}</td>
               </tr>
               <tr>
                 <th scope="row">NIK</th>
                 <td>:</td>
-                <td>{{ result['NIK'] }}</td>
+                <td>{{ detail['NIK'] }}</td>
               </tr>
               <tr>
                 <th scope="row">Email</th>
                 <td>:</td>
-                <td>{{ result['Email'] }}</td>
+                <td>{{ detail['Email'] }}</td>
               </tr>
               <tr>
                 <th scope="row">Address</th>
                 <td>:</td>
-                <td>{{ result['Address'] }}</td>
+                <td>{{ detail['Address'] }}</td>
               </tr>
               <tr>
                 <th scope="row" colspan="3" class="text-center"></th>
@@ -61,42 +102,50 @@
               <tr>
                 <th scope="row">Destination ID</th>
                 <td>:</td>
-                <td>{{ result['DestinationID'] }}</td>
+                <td>{{ detail['DestinationID'] }}</td>
               </tr>
               <tr>
                 <th scope="row">Destination Name</th>
                 <td>:</td>
-                <td>{{ result['DestinationName'] }}</td>
+                <td>{{ detail['DestinationName'] }}</td>
               </tr>
               <tr>
                 <th scope="row">Location</th>
                 <td>:</td>
-                <td>{{ result['Location'] }}</td>
+                <td>{{ detail['Location'] }}</td>
               </tr>
               <tr>
                 <th scope="row">Rating</th>
                 <td>:</td>
-                <td>{{ result['Rating'] }}</td>
+                <td>{{ detail['Rating'] }}</td>
               </tr>
               <tr>
                 <th scope="row">Viewers</th>
                 <td>:</td>
-                <td>{{ result['Viewers'] }} Orang</td>
+                <td>{{ detail['Viewers'] }} Orang</td>
               </tr>
               <tr>
                 <th scope="row">Price</th>
                 <td>:</td>
-                <td>Rp {{ result['Price'] }}</td>
+                <td>Rp {{ detail['Price'] }}</td>
               </tr>
             </tbody>
           </table>
           <br>
           <br>
-          <a type="button" class="btn btn-warning ms-4 mb-4" href="/booking">Back</a>
+          <a type="button" class="btn btn-warning ms-4 mb-4" href="/show-booking">Back</a>
+          <a type="button" class="btn btn-primary ms-4 mb-4" href="/update-booking/{{ detail['BookingID'] }}">Edit</a>
+          <a type="button" class="btn btn-danger ms-4 mb-4" href="/delete-booking/{{ detail['BookingID'] }}">Delete</a>
         </form>
       </div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>
+
+
+
+
+
+

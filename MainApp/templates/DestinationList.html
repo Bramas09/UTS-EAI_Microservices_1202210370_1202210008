@@ -1,10 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Booking Destination App</title>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Destination List</title>
     <style>
         .container {
             display: grid;
@@ -31,33 +40,64 @@
         .card-text {
             font-family: 'Times New Roman', Times, serif; /* Set font to Times New Roman */
         }
-        /* Positioning for the booking button */
-        .booking-btn,
-        .back-btn {
-            position: fixed;
-            bottom: 80px; /* Add bottom margin */
-            padding: 10px 20px; /* Padding tombol */
-            font-size: 1rem; /* Ukuran font tombol */
-            z-index: 1; /* Ensure buttons appear above other content */
-        }
-        /* Style for the back button */
-        .back-btn {
-            left: 150px; /* Set the left margin */
+        /* Style for the buttons container */
+        .buttons-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 150px;
         }
         /* Style for the booking button */
-        .booking-btn {
-            right: 150px; /* Set the right margin */
+        .booking-btn,
+        .back-btn {
+            padding: 10px 20px; /* Padding tombol */
+            font-size: 1rem; /* Ukuran font tombol */
+        }
+        .add-button-container {
+            padding: 10px 150px;
+            text-align: left;
         }
     </style>
-</head>
-<body>
-    <br>
-    <br>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-outline-secondary me-2"
+                aria-current="page"
+                href="/show-booking"
+                >Booking</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-outline-secondary me-2"
+                aria-current="page"
+                href="/show-destination"
+                >Destination</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex ms-auto">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <br />
     <h1 class="mb-4 text-center">Destinations</h1>
     <div class="container">
-        {% for value in detail %}
+        {% for value in result %}
         <!-- Use anchor element for card with destination link -->
-        <a href="/destination/{{ value['DestinationID'] }}" class="card-link">
+        <a href="/show-destination/{{ value['DestinationID'] }}" class="card-link">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><b>{{ value['DestinationName'] }}</b></h5>
@@ -69,8 +109,10 @@
         </a>
         {% endfor %}
     </div>
-    <a type="button" class="btn btn-primary booking-btn" href="/booking">Booking</a>
-    <a type="button" class="btn btn-warning back-btn" href="/">Back</a>
+    <div class="buttons-container">
+      <a type="button" class="btn btn-warning back-btn" href="/">Back</a>
+      <a type="button" class="btn btn-primary booking-btn" href="/create-destination">Add Destination</a>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>
